@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backenddiego:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: survey_backend
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+    restart: always
+
+  frontenddiego:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: survey_frontend
+    ports:
+      - "4300:4300"
+    volumes:
+      - ./frontend:/app
+    restart: always
